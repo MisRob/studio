@@ -1,10 +1,9 @@
 <template>
 
-  <div :style="{ display: 'inline' }">
-    <Icon
-      icon="help"
-      :color="$themeTokens.primary"
-      data-test="info-icon"
+  <div :style="{ display: 'inline-block' }">
+    <HelpButton
+      :ariaLabel="$tr('open')"
+      class="help-button"
       @click="displayDialog = !displayDialog"
     />
     <KModal
@@ -41,8 +40,13 @@
 
 <script>
 
+  import HelpButton from './HelpButton';
+
   export default {
     name: 'InfoModal',
+    components: {
+      HelpButton,
+    },
     props: {
       header: {
         type: String,
@@ -61,6 +65,7 @@
       };
     },
     $trs: {
+      open: 'Open help dialog',
       close: 'Close',
     },
   };
@@ -68,4 +73,10 @@
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+  .help-button {
+    vertical-align: middle;
+  }
+
+</style>
