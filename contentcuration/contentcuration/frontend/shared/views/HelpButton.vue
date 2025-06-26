@@ -1,33 +1,23 @@
 <template>
 
-  <span
-    ref="tooltip"
-    class="help-tooltip"
+  <button
+    :class="$computedClass(buttonStyle)"
+    :aria-label="ariaLabel"
+    @click.stop.prevent="$emit('click')"
+    @mouseenter="hovered = true"
+    @mouseleave="hovered = false"
   >
-    <span
-      class="icons-wrapper"
-      :aria-label="text"
-    >
-      <KIcon
-        icon="infoOutline"
-        :color="$themePalette.blue.v_500"
-        class="icon-outline"
-      />
-      <KIcon
-        icon="info"
-        :color="$themePalette.blue.v_500"
-        class="icon-full"
-      />
-    </span>
-    <KTooltip
-      reference="tooltip"
-      placement="bottom"
-      maxWidth="450px"
-      :refs="$refs"
-    >
-      {{ text }}
-    </KTooltip>
-  </span>
+    <KIcon
+      icon="helpOutline"
+      :color="$themePalette.blue.v_500"
+      class="icon-outline"
+    />
+    <KIcon
+      icon="help"
+      :color="$themePalette.blue.v_500"
+      class="icon-full"
+    />
+  </button>
 
 </template>
 
@@ -35,12 +25,23 @@
 <script>
 
   export default {
-    name: 'HelpTooltip',
-
+    name: 'HelpButton',
     props: {
-      text: {
+      ariaLabel: {
         type: String,
         required: true,
+      },
+    },
+    data() {
+      return {
+        hovered: false,
+      };
+    },
+    computed: {
+      buttonStyle() {
+        return {
+          ':focus': { ...this.$coreOutline },
+        };
       },
     },
   };
@@ -52,21 +53,15 @@
 
   $toucharea-min-width: 44px;
 
-  .help-tooltip {
+  button {
+    position: relative;
     display: inline-block;
     width: $toucharea-min-width;
     height: $toucharea-min-width;
     cursor: pointer;
   }
 
-  .icons-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .icons-wrapper:hover {
+  button:hover {
     .icon-full {
       opacity: 1;
     }

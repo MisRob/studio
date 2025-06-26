@@ -71,7 +71,7 @@
     />
     <VSlideYTransition>
       <RequestForm
-        v-show="showRequestForm"
+        v-show="true"
         @submitted="showRequestForm = false"
       />
     </VSlideYTransition>
