@@ -5,17 +5,16 @@
     class="mx-2"
   >
     <Icon
-      ref="contentNode"
+      :data-floating-id="`tooltip-${_uid}`"
       :icon="showFilled ? 'unpublishedResource' : 'unpublishedChange'"
     />
 
-    <KTooltip
-      reference="contentNode"
-      placement="bottom"
-      :refs="$refs"
-    >
-      {{ message }}
-    </KTooltip>
+    <KTooltipNext
+      :id="`tooltip-${_uid}`"
+      :text="message"
+      delegateTo="root"
+      lazy
+    />
   </span>
 
 </template>
@@ -23,10 +22,14 @@
 
 <script>
 
+  import KTooltipNext from 'kolibri-design-system/lib/KTooltip/next';
   import { ContentKindsNames } from 'shared/leUtils/ContentKinds';
 
   export default {
     name: 'ContentNodeChangedIcon',
+    components: {
+      KTooltipNext,
+    },
     props: {
       node: {
         type: Object,

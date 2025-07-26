@@ -7,7 +7,6 @@ import UserDetails from './pages/Users/UserDetails';
 import PerformanceKTooltip from './pages/PerformanceKTooltip';
 import PerformanceKTooltipNext from './pages/PerformanceKTooltipNext';
 import PerformanceKTooltipNextLazy from './pages/PerformanceKTooltipNextLazy';
-import PerformanceKTooltipNextLazyDelegated from './pages/PerformanceKTooltipNextLazyDelegated';
 import PerformanceVTooltip from './pages/PerformanceVTooltip';
 import PerformanceVTooltipLazy from './pages/PerformanceVTooltipLazy';
 import PerformanceTippy from './pages/PerformanceTippy';
@@ -54,12 +53,6 @@ const router = new VueRouter({
       path: '/performance/k-tooltip-next-lazy',
       props: true,
       component: PerformanceKTooltipNextLazy,
-    },
-    {
-      name: 'performance-k-tooltip-next-lazy-delegated',
-      path: '/performance/k-tooltip-next-lazy-delegated',
-      props: true,
-      component: PerformanceKTooltipNextLazyDelegated,
     },
     {
       name: 'performance-v-tooltip',

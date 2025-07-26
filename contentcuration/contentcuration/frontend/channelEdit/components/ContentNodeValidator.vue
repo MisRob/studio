@@ -13,39 +13,37 @@
     v-else-if="error"
     class="mx-2"
   >
-    <VTooltip
-      bottom
-      lazy
+    <VIconWrapper
+      :data-floating-id="`error-${_uid}`"
+      :color="$themePalette.red.v_600"
     >
-      <template #activator="{ on }">
-        <VIconWrapper
-          :color="$themePalette.red.v_600"
-          v-on="on"
-        >
-          error
-        </VIconWrapper>
-      </template>
-      <span>{{ error }}</span>
-    </VTooltip>
+      error
+    </VIconWrapper>
+    <KTooltipNext
+      :id="`error-${_uid}`"
+      :text="error"
+      delegateTo="root"
+      lazy
+      appendToOverlay
+    />
   </span>
   <span
     v-else-if="warning"
     class="mx-2"
   >
-    <VTooltip
-      bottom
-      lazy
+    <VIconWrapper
+      :data-floating-id="`warning-${_uid}`"
+      :color="$themePalette.yellow.v_600"
     >
-      <template #activator="{ on }">
-        <VIconWrapper
-          :color="$themePalette.yellow.v_600"
-          v-on="on"
-        >
-          warning
-        </VIconWrapper>
-      </template>
-      <span>{{ warning }}</span>
-    </VTooltip>
+      warning
+    </VIconWrapper>
+    <KTooltipNext
+      :id="`warning-${_uid}`"
+      :text="warning"
+      delegateTo="root"
+      lazy
+      appendToOverlay
+    />
   </span>
 
 </template>
@@ -53,8 +51,13 @@
 
 <script>
 
+  import KTooltipNext from 'kolibri-design-system/lib/KTooltip/next';
+
   export default {
     name: 'ContentNodeValidator',
+    components: {
+      KTooltipNext,
+    },
     props: {
       node: {
         type: Object,

@@ -81,19 +81,15 @@
                       shrink
                       class="px-1"
                     >
-                      <VTooltip
-                        :disabled="!hasTitle(node)"
-                        bottom
-                        open-delay="500"
+                      <VIconWrapper :data-floating-id="`tree-item-${_uid}`">
+                        {{ node.resource_count ? 'folder' : 'folder_open' }}
+                      </VIconWrapper>
+                      <KTooltipNext
+                        :id="`tree-item-${_uid}`"
+                        :text="getTitle(node)"
+                        delegateTo="root"
                         lazy
-                      >
-                        <template #activator="{ on }">
-                          <VIconWrapper v-on="on">
-                            {{ node.resource_count ? 'folder' : 'folder_open' }}
-                          </VIconWrapper>
-                        </template>
-                        <span>{{ getTitle(node) }}</span>
-                      </VTooltip>
+                      />
                     </VFlex>
                     <VFlex
                       class="caption px-1 text-truncate"
@@ -226,6 +222,7 @@
   import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
   import debounce from 'lodash/debounce';
 
+  import KTooltipNext from 'kolibri-design-system/lib/KTooltip/next';
   import ContentNodeOptions from '../ContentNodeOptions';
   import ContentNodeChangedIcon from '../ContentNodeChangedIcon';
   import ContentNodeValidator from '../ContentNodeValidator';
@@ -256,6 +253,7 @@
       LoadingText,
       IconButton,
       ContentNodeCopyTaskProgress,
+      KTooltipNext,
     },
     mixins: [titleMixin],
     inject: ['draggableUniverse'],

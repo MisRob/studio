@@ -172,12 +172,18 @@
                   <VListTileAction class="actions-end-col">
                     <KIconButton
                       v-if="isTopic"
+                      :data-floating-id="`tooltip-chevron-${_uid}`"
                       :aria-hidden="hover"
                       data-test="btn-chevron"
                       icon="chevronRight"
-                      :tooltip="$tr('openTopic')"
                       size="small"
                       @click="$emit('topicChevronClick')"
+                    />
+                    <KTooltipNext
+                      :id="`tooltip-chevron-${_uid}`"
+                      :text="$tr('openTopic')"
+                      delegateTo="root"
+                      lazy
                     />
                   </VListTileAction>
                   <slot
@@ -223,6 +229,7 @@
 
   import { mapGetters } from 'vuex';
   import camelCase from 'lodash/camelCase';
+  import KTooltipNext from 'kolibri-design-system/lib/KTooltip/next';
   import ContentNodeCopyTaskProgress from '../../views/progress/ContentNodeCopyTaskProgress';
   import ContentNodeChangedIcon from '../ContentNodeChangedIcon';
   import ContentNodeValidator from '../ContentNodeValidator';
@@ -248,6 +255,7 @@
       ToggleText,
       ContentNodeCopyTaskProgress,
       ContentNodeLearningActivityIcon,
+      KTooltipNext,
     },
     mixins: [titleMixin, metadataTranslationMixin],
     props: {
