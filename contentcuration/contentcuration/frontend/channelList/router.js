@@ -2,6 +2,7 @@ import VueRouter from 'vue-router';
 import ChannelList from './views/Channel/ChannelList';
 import ChannelSetList from './views/ChannelSet/ChannelSetList';
 import ChannelSetModal from './views/ChannelSet/ChannelSetModal';
+import ChannelSetModalTabsTest from './views/ChannelSet/ChannelSetModalTabsTest';
 import CatalogList from './views/Channel/CatalogList';
 import { RouteNames } from './constants';
 import CatalogFAQ from './views/Channel/CatalogFAQ';
@@ -28,6 +29,26 @@ const router = new VueRouter({
       path: '/collections/new',
       component: ChannelSetModal,
       props: true,
+    },
+    // The three below are temporary routes
+    // and component for tabs user testing
+    {
+      name: RouteNames.NEW_CHANNEL_SET_SCROLLING_TABS,
+      path: '/collections/new/with-scrolling-tabs',
+      component: ChannelSetModalTabsTest,
+      props: { tabsTest: 'scrolling' },
+    },
+    {
+      name: RouteNames.NEW_CHANNEL_SET_MULTIROW_TABS,
+      path: '/collections/new/with-multirow-tabs',
+      component: ChannelSetModalTabsTest,
+      props: { tabsTest: 'multirow' },
+    },
+    {
+      name: RouteNames.NEW_CHANNEL_SET_DROPDOWN_TABS,
+      path: '/collections/new/with-dropdown-tabs',
+      component: ChannelSetModalTabsTest,
+      props: { tabsTest: 'dropdown' },
     },
     {
       name: RouteNames.CHANNEL_SET_DETAILS,
