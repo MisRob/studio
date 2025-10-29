@@ -37,14 +37,20 @@
         ]"
         class="cards"
       >
+        <!--
+          Rather than adding new props `thumbnailRatio` and `thumbnailPlaceholderRatio`
+          and sending them down to KImg inside KCard, add new #thumbnail slot to KCard
+          and let consumers provide it with KImg configured in whatever way they need.
+        -->
         <KCard
           v-for="(channel, index) in listChannels"
           :key="channel.id"
           :headingLevel="2"
+          thumbnailRatio="auto"
+          thumbnailPlaceholderRatio="16:9"
           thumbnailDisplay="small"
           :thumbnailSrc="thumbnailSrc(channel)"
           :thumbnailAlign="'left'"
-          :thumbnailScaleType="'contain'"
           :orientation="windowIsSmall ? 'vertical' : 'horizontal'"
           :title="channel.name"
           :titleMaxLines="2"
@@ -77,7 +83,7 @@
               </div>
               <div
                 class="cards-desc"
-                :style="{ color: $themePalette.text }"
+                :style="{ color: $themeTokens.text }"
               >
                 {{ channel.description }}
               </div>
